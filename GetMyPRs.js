@@ -16,5 +16,5 @@ for(j=0;j<a.length;++j) {
 	title = c.title && c.title.replace(/[^a-zA-Z0-9 ]/g, "")
 	desc = c.description && c.description.replace(/[^a-zA-Z0-9 ]/g, "")
 	date = new Date(c.createdDate)
-	console.log(`${title}, ${desc}, ${date}`)
+	console.log(`${title}, ${desc}, ${date}, ${c.createdDate}`)
 }
