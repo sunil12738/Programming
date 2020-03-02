@@ -8,7 +8,7 @@ class ToDos extends Object {
 const todos = new ToDos()
 
 function add(){
-    document.getElementById("modal").style.display = "block"
+    document.getElementById("modal-wrap").style.display = "block"
 }
 
 function save(){
@@ -21,7 +21,7 @@ function save(){
         id: Date.now()
     })
     console.log(todos)
-    document.getElementById("modal").style.display = "none"
+    document.getElementById("modal-wrap").style.display = "none"
     show()
 }
 
@@ -49,11 +49,11 @@ function show() {
 
 function edit({ title, desc, id }) {
     console.log("sunil")
-    document.getElementById("modal").style.display = "block"
+    document.getElementById("modal-wrap").style.display = "block"
     const title1 = document.getElementById("title")
     const desc1 = document.getElementById("desc")
-    title.innerHTML = title1
-    desc.innerHTML =  desc1
+    // title.innerHTML = title1
+    // desc.innerHTML =  desc1
     saveAfterEdit({ id })
 }
 
