@@ -1,0 +1,13 @@
+#main {
+    width: 1000px;
+    margin: 0 auto;
+}
+#todos {
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 200px;
+    margin: 20px;
+    padding: 20px;
+}
