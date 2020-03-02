@@ -5,10 +5,6 @@ class ToDos extends Object {
     }
 }
 
-const todos = new ToDos()
-let mode = "ADD"
-let editId = null
-
 function add(){
     document.getElementById("modal-wrap").style.display = "block"
     mode = "ADD"
@@ -34,16 +30,19 @@ function save(e){
     console.log(todos)
     document.getElementById("modal-wrap").style.display = "none"
     showCard({ list: document.getElementById("todos"), data: { title, desc, id } })
+    saveInStorage()
 }
 
 function show() {
     const list = document.getElementById("todos")
+    console.log(list)
     todos.todos.map(function(data){
         showCard({ data, list })
     })
 }
 
 function showCard({ data, list }) {
+    console.log(list)
     const div = document.createElement("div")
     div.className = "card"
     div.id = data.id
@@ -87,9 +86,28 @@ function saveAfterEdit({ id }) {
     })
     const parentDiv = document.getElementById(id)
     parentDiv.getElementsByClassName("title")[0].innerHTML = title
-    parentDiv.getElementsByClassName("desc")[0].innerHTML = title
+    parentDiv.getElementsByClassName("desc")[0].innerHTML = desc
     todos.todos[idd].title = title
     todos.todos[idd].desc = desc
+    saveInStorage()
 }
 
-show()
+
+function saveInStorage() {
+    localStorage.setItem("todo", JSON.stringify(todos.todos))
+}
+
+function getFromStorage() {
+    const data = JSON.parse(localStorage.getItem("todo")) || []
+    todos.todos = data
+}
+
+window.addEventListener('DOMContentLoaded', (event) => {
+    console.log('DOM fully loaded and parsed');
+    const todos = new ToDos()
+    getFromStorage()
+    let mode = "ADD"
+    let editId = null
+    show()
+
+});
